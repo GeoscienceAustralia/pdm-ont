@@ -5,15 +5,19 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 <http://pid.geoscience.org.au/def/ont/gapd> a owl:Ontology ;
 	owl:versionIRI <http://pid.geoscience.org.au/def/ont/gapd/0.1> ;
-	owl:imports <http://www.w3.org/ns/dcat> , <http://www.w3.org/ns/prov-o-20130430> ;
+	owl:imports <http://www.w3.org/ns/dcat> , <http://www.w3.org/ns/prov> ;
 	owl:versionInfo "0.1"@en ;
 	rdfs:comment "This ontology represents many of the classes of information object that Geoscience Australia (GA) delivers publicly and the relationships between them."@en ;
-	<http://purl.org/dc/terms/modified> "2016-12-08"^^xsd:date ;
+	dcterms:modified "2016-12-08"^^xsd:date ;
 	rdfs:label "GA's Public Data ontology"@en ;
-	<http://purl.org/dc/terms/creator> <http://orcid.org/0000-0002-8742-7730> .
+	dcterms:creator <http://orcid.org/0000-0002-8742-7730> , "Nicholas Car"@en ;
+	dcterms:created "2016-12-08"^^xsd:date ;
+	rdfs:isDefinedBy <http://pid.geoscience.org.au/def/ont/gapd> ;
+	rdfs:seeAlso <https://github.com/nicholascar/gapd-o> .
 # 
 # 
 # #################################################################
@@ -78,7 +82,8 @@ Use of this property as per :DatasetX wasGeneratedUsing :PlanY is equivalent to 
 
 :Dataset a owl:Class ;
 	rdfs:subClassOf dcat:Dataset ;
-	rdfs:comment "GA's Datasets are both DCAT Datasets and also PROV Entities. This means they have metadata according to DCAT and relations to other Datasets, Agents and Activities according to PROV."@en .
+	rdfs:comment "GA's Datasets are both DCAT Datasets and also PROV Entities. This means they have metadata according to DCAT and relations to other Datasets, Agents and Activities according to PROV."@en ;
+	rdfs:label "Dataset"@en .	
 # 
 # http://pid.geoscience.org.au/def/ont/gapd#DatasetCollection
 
