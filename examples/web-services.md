@@ -9,7 +9,7 @@ In [ISO19115-1:2014 (Geographic information -- Metadata -- Part 1: Fundamentals)
 
 mdb: http://standards.iso.org/iso/19115/-3/mdb/1.0  
 srv: http://standards.iso.org/iso/19115/-3/srv/2.0  
-xlink: http://www.w3.org/1999/xlink
+xlink: http://www.w3.org/1999/xlink  
 
 ![web services and datasets](web-service-01.png)
 Figure 01: Web Service <--> Dataset relations
@@ -17,8 +17,3 @@ Figure 01: Web Service <--> Dataset relations
 In Figure 01, the GAPD operatesOn property is shown linking a Web Service and a Dataset and the relationships between peratesOn, Web Service and dataset and classes and properties in DCAT are shown.
 
 It is not shown in the diagram for simplicity's sake but the GADP mandates a cardinality of 1+ for operatesOn, that is a Web Service must be shown to operatesOn at least one Dataset.
-
-
-//mdb:MD_Metadata/mdb:identificationInfo/srv:SV_ServiceIdentification/srv:operatesOn/@xlink:*
-
-r = tree.xpath('//mdb:MD_Metadata/mdb:identificationInfo/srv:SV_ServiceIdentification/srv:operatesOn/@xlink:*',namespaces={'mdb': 'http://standards.iso.org/iso/19115/-3/mdb/1.0','srv': 'http://standards.iso.org/iso/19115/-3/srv/2.0','xlink': 'http://www.w3.org/1999/xlink'})
