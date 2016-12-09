@@ -11,7 +11,7 @@ mdb: http://standards.iso.org/iso/19115/-3/mdb/1.0
 srv: http://standards.iso.org/iso/19115/-3/srv/2.0  
 xlink: http://www.w3.org/1999/xlink  
 
-![web services and datasets](web-service-01.png)
+![web services and datasets](web-services-01.png)  
 Figure 01: Web Service <--> Dataset relations
 
 In Figure 01, the GAPD operatesOn property is shown linking a Web Service and a Dataset and the relationships between peratesOn, Web Service and dataset and classes and properties in DCAT are shown.
