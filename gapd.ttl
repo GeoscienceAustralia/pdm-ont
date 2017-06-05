@@ -11,7 +11,7 @@
 @base <http://pid.geoscience.org.au/def/ont/gapd#> .
 
 <http://pid.geoscience.org.au/def/ont/gapd#> rdf:type owl:Ontology ;
-                                              owl:versionIRI <http://pid.geoscience.org.au/def/ont/gapd/0.1> ;
+                                              owl:versionIRI <http://pid.geoscience.org.au/def/ont/gapd/1.0> ;
                                               owl:imports <http://www.w3.org/ns/dcat> ,
                                                           <http://purl.org/linked-data/registry> ,
                                                           <http://www.w3.org/ns/sosa/> ,
