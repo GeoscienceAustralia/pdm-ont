@@ -5,60 +5,72 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@base <http://pid.geoscience.org.au/def/ont/gapd#> .
 
-<http://pid.geoscience.org.au/def/ont/gapd> a owl:Ontology ;
-	owl:versionIRI <http://pid.geoscience.org.au/def/ont/gapd/0.1> ;
-	owl:imports <http://www.w3.org/ns/dcat> , <http://www.w3.org/ns/prov> ;
-	owl:versionInfo "0.1"@en ;
-	rdfs:comment "This ontology represents many of the classes of information object that Geoscience Australia (GA) delivers publicly and the relationships between them."@en ;
-	dcterms:modified "2016-12-08"^^xsd:date ;
-	rdfs:label "GA's Public Data ontology"@en ;
-	dcterms:creator <http://orcid.org/0000-0002-8742-7730> , "Nicholas Car"@en ;
-	dcterms:created "2016-12-08"^^xsd:date ;
-	rdfs:isDefinedBy <http://pid.geoscience.org.au/def/ont/gapd> ;
-	rdfs:seeAlso <https://github.com/nicholascar/gapd-o> .
-# 
-# 
-# #################################################################
-# #
-# #    Object Properties
-# #
-# #################################################################
-# 
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#operatesOn
+<http://pid.geoscience.org.au/def/ont/gapd#> rdf:type owl:Ontology ;
+                                              owl:versionIRI <http://pid.geoscience.org.au/def/ont/gapd/0.1> ;
+                                              owl:imports <http://www.w3.org/ns/dcat> ,
+                                                          <http://purl.org/linked-data/registry> ,
+                                                          <http://www.w3.org/ns/sosa/> ,
+                                                          <http://www.w3.org/ns/prov> ;
+                                              rdfs:isDefinedBy <http://pid.geoscience.org.au/def/ont/gapd> ;
+                                              owl:versionInfo 1.0 ;
+                                              rdfs:comment "This ontology represents many of the classes of information object that Geoscience Australia (GA) delivers publicly and the relationships between them."@en ;
+                                              dcterms:modified "2017-06-04"^^xsd:date ;
+                                              dcterms:description "This ontology represents many of the classes of information object that Geoscience Australia (GA) delivers publicly and the relationships between them."@en ;
+                                              dcterms:creator "Nicholas Car"@en ;
+                                              dcterms:title "GA's Public Data Ontology"@en ;
+                                              dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+                                              rdfs:label "GA's Public Data ontology"@en ;
+                                              vann:preferredNamespaceUri "http://pid.geoscience.org.au/def/ont/gapd#"^^xsd:string ;
+                                              dcterms:creator <http://orcid.org/0000-0002-8742-7730> ;
+                                              rdfs:seeAlso <https://github.com/nicholascar/gapd-o> ;
+                                              vann:preferredNamespacePrefix "gapd"@en ;
+                                              dcterms:created "2016-12-08"^^xsd:date ;
+                                              dcterms:rights "(c) Geoscience Australia 2017"@en .
 
-:operatesOn a owl:ObjectProperty ;
-	owl:inverseOf dcat:distribution ;
-	rdfs:domain :WebService ;
-	rdfs:range dcat:Dataset ;
-	rdfs:comment """Web Services operate on Dataset(s).
+#################################################################
+#    Annotation properties
+#################################################################
 
-This is a restricted version of the invers of DCAT's distribution property."""@en ;
-	rdfs:label "operates on"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#wasGeneratedUsing
+###  http://purl.org/linked-data/registry#containedItemClass
+<http://purl.org/linked-data/registry#containedItemClass> rdf:type owl:AnnotationProperty .
 
-:wasGeneratedUsing a owl:ObjectProperty ;
-	rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasDerivedFrom> ;
-	rdfs:domain :Dataset ;
-	rdfs:range _:genid1 .
 
-_:genid1 a owl:Class ;
-	owl:unionOf _:genid3 .
+###  http://purl.org/linked-data/registry#subregister
+<http://purl.org/linked-data/registry#subregister> rdf:type owl:AnnotationProperty .
 
-_:genid3 a rdf:List ;
-	rdf:first :SoftwareRepository ;
-	rdf:rest _:genid2 .
 
-_:genid2 a rdf:List ;
-	rdf:first <http://www.w3.org/ns/prov#Plan> ;
-	rdf:rest rdf:nil .
+#################################################################
+#    Object Properties
+#################################################################
 
-:wasGeneratedUsing rdfs:comment """Datasets may have been generated from Plans (instructions or code). 
+###  http://pid.geoscience.org.au/def/ont/gapd#operatesOn
+:operatesOn rdf:type owl:ObjectProperty ;
+            owl:inverseOf dcat:distribution ;
+            rdfs:domain :WebService ;
+            rdfs:range :Dataset ;
+            rdfs:comment """Web Services operate on Dataset(s).
 
-Use of this property as per :DatasetX wasGeneratedUsing :PlanY is equivalent to declaring:
+This is a restricted version of the inverse of DCAT's distribution property and is a code list value in ISO19115-3.”””@en ;
+            rdfs:label \"operates on\"@en .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#wasGeneratedUsingPlan
+:wasGeneratedUsingPlan rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :wasDerivedFrom ;
+                   rdfs:domain :Dataset ;
+                   rdfs:range [ rdf:type owl:Class ;
+                                owl:unionOf ( :Plan
+                                              :SoftwareRepository
+                                            )
+                              ] ;
+                   rdfs:comment “””Entities may have been generated from Plans (instructions or code). 
+
+Use of this property as per :DatasetX wasGeneratedUsingPlan :PlanY is equivalent to declaring:
 
 :DatasetX a prov:Entity ;
   prov:wasGeneratedBy [
@@ -66,150 +78,122 @@ Use of this property as per :DatasetX wasGeneratedUsing :PlanY is equivalent to 
       prov:qualifiedAssociation [
         prov:Association [
           prov:hadPlan :PlanY ]]] ."""@en .
-# 
-# http://www.w3.org/ns/dcat#distribution
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Classes
-# #
-# #################################################################
-# 
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#Dataset
 
-:Dataset a owl:Class ;
-	rdfs:subClassOf dcat:Dataset ;
-	rdfs:comment "GA's Datasets are both DCAT Datasets and also PROV Entities. This means they have metadata according to DCAT and relations to other Datasets, Agents and Activities according to PROV."@en ;
-	rdfs:label "Dataset"@en .	
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#DatasetCollection
 
-:DatasetCollection a owl:Class ;
-	rdfs:subClassOf <http://www.w3.org/ns/prov#Collection> , _:genid4 .
+###  http://www.w3.org/ns/dcat#distribution
 
-_:genid4 a owl:Restriction ;
-	owl:onProperty <http://purl.org/dc/terms/hasPart> ;
-	owl:allValuesFrom _:genid5 .
+#################################################################
+#    Classes
+#################################################################
 
-_:genid5 a owl:Class ;
-	owl:unionOf _:genid7 .
+###  http://pid.geoscience.org.au/def/ont/gapd#Collection
+:Collection rdf:type owl:Class .
 
-_:genid7 a rdf:List ;
-	rdf:first :DatasetCollection ;
-	rdf:rest _:genid6 .
 
-_:genid6 a rdf:List ;
-	rdf:first dcat:Dataset ;
-	rdf:rest rdf:nil .
+###  http://pid.geoscience.org.au/def/ont/gapd#Dataset
+:Dataset rdf:type owl:Class ;
+         rdfs:subClassOf dcat:Dataset ,
+                         <http://www.w3.org/ns/prov#Entity> .
 
-:DatasetCollection rdfs:comment """An OWL class representation of an ISO19115 Collection (MD_ScopeCode: codeListValue \"collection\").
 
-This collection is limited to containing either other Dataset Collections, Datasets or both."""@en ;
-	rdfs:label "Dataset Collection"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#Ontology
+###  http://pid.geoscience.org.au/def/ont/gapd#Plan
+:Plan rdf:type owl:Class .
 
-:Ontology a owl:Class ;
-	rdfs:subClassOf :Dataset ;
-	rdfs:comment """An ontology for GA is both an OWL Ontology and also a DCAT Dataset. It's content (data) is therefore an ontology and it's metadata contains dataset metadata, as well as standard OWL ontology metadata.
 
-Being a dataset, all GA ontologies are listed in a GA dataset catalogue."""@en ;
-	rdfs:label "Ontology"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#PublicCatalogue
-
-:PublicCatalogue a owl:Class ;
-	rdfs:subClassOf dcat:Catalog ;
-	rdfs:comment "A published catalogue of publicly available information objects."@en ;
-	rdfs:label "Public Catalogue"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#PublicDataset
-
-:PublicDataset a owl:Class ;
-	rdfs:subClassOf :Dataset ;
-	rdfs:comment """A Public Dataset is a dataset that GA publishes publicly. It is not necissarily freely available or even avialable at all but its existence, i.e. its most basic metadata, and likely its complete metadata is freely available.
-
-GA' Public Datasets carry certain guarentees: their metadata will be accessible in certain formats (if it is a dataset in the main GA catalogue, then in ISO 19115-3-compliant metadata) and they will have certain values present, such as a custodian, abstract, license etc. These values are DCAT properties that this ontology mandates."""@en ;
-	rdfs:label "Public Dataset"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#PublicOntology
-
-:PublicOntology a owl:Class ;
-	rdfs:subClassOf :Ontology ;
-	rdfs:comment """A Public Ontology is an ontology, which is a specialised kind of dataset, that GA publishes publicly. It is not necissarily freely available or even avialable at all but its existence, i.e. its most basic metadata, and likely its complete metadata, and probably all of its data is freely available.
-
-GA' Public Ontologies carry certain guarentees: their metadata will be accessible in certain formats (all Public Ontologies will have DCAT metadata and some OWL ontology metadata) and they will have certain values present, such as a custodian, abstract, license etc. These values are DCAT properties that this ontology mandates."""@en ;
-	rdfs:label "Public Ontology"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#PublicSoftwareRepository
-
-:PublicSoftwareRepository a owl:Class ;
-	rdfs:subClassOf :SoftwareRepository ;
-	rdfs:comment "A Public Software Repository is a GA published system such as GitHub or BitBucket that stores and manages software code."@en ;
-	rdfs:label "Public Software Repository"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#PublicVocabulary
-
-:PublicVocabulary a owl:Class ;
-	rdfs:subClassOf :PublicDataset , <http://purl.org/vocommons/voaf#Vocabulary> ;
-	rdfs:comment """A Public Vocabulary is a vocabulary, which is a specialised kind of dataset, that GA publishes publicly. It is not necissarily freely available or even avialable at all but its existence, i.e. its most basic metadata, and likely its complete metadata, and probably all of its data is freely available.
-
-GA' Public Vocabularies carry certain guarentees: their metadata will be accessible in certain formats (all Public Vocabularies will have SKOS+OWL metadata) and they will have certain values present, such as a custodian, abstract, license etc. These values are DCAT properties that this ontology mandates."""@en ;
-	rdfs:label "Public Vocabulary"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#PublicWebService
-
-:PublicWebService a owl:Class ;
-	rdfs:subClassOf :WebService ;
-	rdfs:comment """A GA Public Web Service is a dataset that GA publishes publicly. It is not necissarily freely available or even available at all perhaps without some granted level of access but its existence, i.e. its most basic metadata, and likely its complete metadata is freely available.
-
-GA Public Web Services carry certain guarentees: their metadata will be accessible in certain formats (always ISO 19115-3 compliant metadata) and will have certain values present, such as a custodian, abstract, lineage (the datasets the web service draws from) etc."""@en ;
-	rdfs:label "Public Web Service"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository
-
-:SoftwareRepository a owl:Class ;
-	rdfs:subClassOf :Dataset , <http://www.w3.org/ns/prov#Plan> ;
-	rdfs:comment """A Software Repository is a system such as GitHub or BitBucket that stores and manages software code. 
+###  http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository
+:SoftwareRepository rdf:type owl:Class ;
+                    rdfs:subClassOf :Dataset ;
+                    rdfs:comment """A Software Repository is a system such as GitHub or BitBucket that stores and manages software code. 
 
 A Software Repository is also a type of dataset therefor GA's Software Repositories are catalogued in one of GA's catalogues, just as all datasets are."""@en ;
-	rdfs:label "Software Repository"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#WebService
+                    rdfs:label "Software Repository"@en .
 
-:WebService a owl:Class ;
-	rdfs:subClassOf dcat:Distribution ;
-	rdfs:comment "GA's Web Services are a specialised type of a dataset distribution: they are a services that allow for dataset subsetting (querying) and supersetting (merging data from multiple datasets). GA has an extensive catalogue of Open Geospatial Consortium web services but also has a few non-OGC web services, such as bespoke RESTful APIs, database XML APIs and SPARQL endpoints."@en ;
-	rdfs:label "Web Service"@en .
-# 
-# http://pid.geoscience.org.au/def/ont/gapd#WebServiceCollection
 
-:WebServiceCollection a owl:Class ;
-	rdfs:subClassOf <http://www.w3.org/ns/prov#Collection> , _:genid8 .
+###  http://pid.geoscience.org.au/def/ont/gapd#WebService
+:WebService rdf:type owl:Class ;
+            rdfs:subClassOf dcat:Distribution ;
+            rdfs:comment "GA's Web Services are a specialised type of a dataset distribution: they are a services that allow for dataset subsetting (querying) and supersetting (merging data from multiple datasets). GA has an extensive catalogue of Open Geospatial Consortium web services but also has a few non-OGC web services, such as bespoke RESTful APIs, database XML APIs and SPARQL endpoints."@en ;
+            rdfs:label "Web Service"@en .
 
-_:genid8 a owl:Restriction ;
-	owl:onProperty <http://purl.org/dc/terms/hasPart> ;
-	owl:allValuesFrom :WebService .
 
-:WebServiceCollection rdfs:subClassOf _:genid9 .
+###  http://purl.org/vocommons/voaf#Vocabulary
+<http://purl.org/vocommons/voaf#Vocabulary> rdfs:subClassOf :Dataset ,
+                                                            <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 
-_:genid9 a owl:Restriction ;
-	owl:onProperty :operatesOn ;
-	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-	owl:onClass dcat:Dataset .
 
-:WebServiceCollection rdfs:comment """A collection of Web Services. This object exists to group different instances of Web Services types that access the same dataset(s).
+###  http://www.w3.org/ns/prov#Entity
+<http://www.w3.org/ns/prov#Entity> rdf:type owl:Class .
 
-A Web Service Collection must indicate at least one Dataset that it operates on."""@en ;
-	rdfs:label "Web Service Collection"@en .
-# 
-# http://purl.org/vocommons/voaf#Vocabulary
 
-<http://purl.org/vocommons/voaf#Vocabulary> rdfs:subClassOf :Dataset , <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
-	rdfs:comment "A Vocabulary, as published by GA, is both a SKOS ConceptScheme and also a DCAT Dataset. This means its content is in accordance with SKOS but its metadata is in accordance with DCAT."@en ;
-	rdfs:label "Vocabulary"@en .
-# 
-# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://pid.geoscience.org.au/def/ont/gapd#Dataset
+:Dataset rdf:type owl:NamedIndividual .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#DatasetRegister
+:DatasetRegister rdf:type owl:NamedIndividual ,
+                          <http://purl.org/linked-data/registry#FederatedRegister> ;
+                 <http://purl.org/linked-data/registry#containedItemClass> :Dataset ;
+                 <http://purl.org/linked-data/registry#subregister> :OntologyRegister ,
+                                                                    :VocabularyRegister ,
+                                                                    :eCatDatasetRegister ;
+                 rdfs:comment "The conceptual register of all Dataset class objects in GA"@en ;
+                 rdfs:label "Dataset Register"@en .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#OntologyRegister
+<http://pid.geoscience.org.au/def/ont/> rdf:type owl:NamedIndividual ,
+                           <http://purl.org/linked-data/registry#Register> ;
+                  <http://purl.org/linked-data/registry#containedItemClass> owl:Ontology ;
+                  rdfs:comment "The Register of all of GA's Ontologies"@en ;
+                  rdfs:label "Ontology Register"@en .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#SampleRegister
+<http://pid.geoscience.org.au/samples/> rdf:type owl:NamedIndividual ,
+                         <http://purl.org/linked-data/registry#Register> ;
+		<http://purl.org/linked-data/registry#containedItemClass> sosa:Sample ;
+                rdfs:comment "The Register of all of GA's Samples. This Register is a web-exposed, multiple ontology-supporting API, using the contents of GA's enterprise database, from multiple schema, aggregated in a Samples table."@en ;
+                rdfs:label "Sample Register"@en .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#VocabularyRegister
+<http://pid.geoscience.org.au/def/voc/> rdf:type owl:NamedIndividual ,
+                             <http://purl.org/linked-data/registry#Register> ;
+                    <http://purl.org/linked-data/registry#containedItemClass> <http://purl.org/vocommons/voaf#Vocabulary> ;
+                    rdfs:comment "The Register of all of GA's Vocabularies"@en ;
+                    rdfs:label "Vocabulary Register"@en .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#eCatDatasetRegister
+<http://pid.geoscience.org.au/dataset/> rdf:type owl:NamedIndividual ,
+                              <http://purl.org/linked-data/registry#Register> ;
+                     <http://purl.org/linked-data/registry#containedItemClass> :Dataset ;
+                     rdfs:comment "The Datasets register within eCat, the enterprise catalogue"@en ;
+                     rdfs:label "eCat Dataset Register"@en .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#eCatServiceRegister
+<http://pid.geoscience.org.au/service/> rdf:type owl:NamedIndividual ,
+                              <http://purl.org/linked-data/registry#Register> ;
+                     <http://purl.org/linked-data/registry#containedItemClass> :WebService ;
+                     rdfs:comment "The Services register within eCat, the enterprise catalogue"@en ;
+                     rdfs:label "eCat Services Register"@en .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:Dataset rdfs:label "Dataset"@en ;
+         rdfs:comment "GA's Datasets are both DCAT Datasets and also PROV Entities. This means they have metadata according to DCAT and relations to other Datasets, Agents and Activities according to PROV."@en .
+
+
+<http://purl.org/vocommons/voaf#Vocabulary> rdfs:comment "A Vocabulary, as published by GA, is both a SKOS ConceptScheme and also a DCAT Dataset. This means its content is in accordance with SKOS but its metadata is in accordance with DCAT."@en ;
+                                            rdfs:label "Vocabulary"@en .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
