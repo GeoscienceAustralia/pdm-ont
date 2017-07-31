@@ -24,6 +24,7 @@ This means for each instance of a class listed here deliverd via one of GA's cat
 
 Further documentation and examples using the GAPD are given in the code repository housing this ontology at http://github.com/geoscienceaustralia/gapd-ont."""@en ;
                                               rdfs:isDefinedBy <http://pid.geoscience.org.au/def/ont/gapd> ;
+                                              dcterms:title "Geoscience Australia's Public Data ontology"@en ;
                                               owl:versionInfo "1.1"@en ;
                                               dcterms:creator "Nicholas Car"@en ;
                                               rdfs:comment """This ontology represents many of the classes of information object that Geoscience Australia (GA) delivers publicly and the relationships between them. 
@@ -33,7 +34,6 @@ Instances of the classes of objects are delivered online via GA's catalogues suc
 This means for each instance of a class listed here deliverd via one of GA's catalogue systems, you should be able to find the required metadata for it. This ontology then acts as a guarentee about what you can expect to know about GA's publicly delivered information objects.
 
 Further documentation and examples using the GAPD are given in the code repository housing this ontology at http://github.com/geoscienceaustralia/gapd-ont."""@en ;
-                                              dcterms:title "GA's Public Data Ontology"@en ;
                                               dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
                                               vann:preferredNamespaceUri "http://pid.geoscience.org.au/def/ont/gapd#"^^xsd:string ;
                                               dcterms:creator <http://orcid.org/0000-0002-8742-7730> ;
@@ -166,10 +166,12 @@ GA's main register of Web Services is delivered via its main enterprise catalogu
             rdfs:label "Web Service"@en .
 
 
-###  http://purl.org/vocommons/voaf#Vocabulary
-<http://purl.org/vocommons/voaf#Vocabulary> rdfs:subClassOf :Dataset ,
-                                                            <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
-                                            rdfs:comment """GA uses vocabularties to deliver the relationships between terms within particular domains. 
+###  http://pid.geoscience.org.au/def/ont/gapd#Vocabulary
+ :Vocabulary rdf:type owl:Class ;
+             rdfs:subClassOf :Dataset ,
+                             <http://purl.org/vocommons/voaf#Vocabulary> ,
+                             <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+             rdfs:comment """GA uses vocabularties to deliver the relationships between terms within particular domains. 
 
 GA publishes domains via our vocabulary register: http://pid.geoscience.gov.au/def/voc/
 
