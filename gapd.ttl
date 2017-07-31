@@ -36,13 +36,13 @@ This means for each instance of a class listed here deliverd via one of GA's cat
 Further documentation and examples using the GAPD are given in the code repository housing this ontology at http://github.com/geoscienceaustralia/gapd-ont."""@en ;
                                               dcterms:title "GA's Public Data Ontology"@en ;
                                               dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-                                              rdfs:label "GA's Public Data ontology"@en ;
                                               vann:preferredNamespaceUri "http://pid.geoscience.org.au/def/ont/gapd#"^^xsd:string ;
                                               dcterms:creator <http://orcid.org/0000-0002-8742-7730> ;
                                               rdfs:seeAlso <https://github.com/nicholascar/gapd-o> ;
                                               vann:preferredNamespacePrefix "gapd"@en ;
                                               dcterms:created "2016-12-08"^^xsd:date ;
-                                              dcterms:rights "(c) Geoscience Australia 2017"@en .
+                                              dcterms:rights "(c) Geoscience Australia 2017"@en ;
+                                              rdfs:label "Geoscience Australia's Public Data ontology"@en .
 
 #################################################################
 #    Annotation properties
@@ -108,30 +108,72 @@ Use of this property as per :DatasetX wasGeneratedUsingPlan :PlanY is equivalent
                          <http://www.w3.org/ns/prov#Entity> .
 
 
+###  http://pid.geoscience.org.au/def/ont/gapd#Ontology
+:Ontology rdf:type owl:Class ;
+          rdfs:subClassOf :Dataset ;
+          rdfs:comment """An ontology is \"a formal naming and definition of the types, properties, and interrelationships of the entities that really or fundamentally exist for a particular domain of discourse\" (Wikipedia: https://en.wikipedia.org/wiki/Ontology_(information_science)). 
+
+Ontologies listed in this GAPD are Web Ontology Language (OWL) ontologies delivered by GA for various purposes, for example the LINK ontology which presentes the data model used by the LINK Content Management System (http://link.fsdf.org.au) as a formal OWL ontology at http://pid.geoscience.gov.au/def/ont/link.
+
+All GA's ontologies are listed within GA's ontology register at http://pid.geoscience.gov.au/def/ont/."""@en ;
+          rdfs:label "Ontology"@en .
+
+
 ###  http://pid.geoscience.org.au/def/ont/gapd#Plan
 :Plan rdf:type owl:Class .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#Sample
+:Sample rdf:type owl:Class ;
+        rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> ;
+        rdfs:comment """GA is the custodian of several millions of rock, gem fossile oil and other types of geoscience-relevant samples. 
+
+Metadata for GA's samples are delivered via the Samples Register: http://pid.geoscience.gov.au/sample/.
+
+GA defines its Samples as subclasses of the SOSA ontology's Sample class as well as PROV's Entity."""@en ;
+        rdfs:label "Sample"@en .
 
 
 ###  http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository
 :SoftwareRepository rdf:type owl:Class ;
                     rdfs:subClassOf :Dataset ;
-                    rdfs:comment """A Software Repository is a system such as GitHub or BitBucket that stores and manages software code. 
+                    rdfs:comment """A Software Repository is an instance of a version contol system such as Git, usually managed by a dedicated online service such as GitHub or BitBucket that stores and manages software code. 
 
-A Software Repository is also a type of dataset therefor GA's Software Repositories are catalogued in one of GA's catalogues, just as all datasets are."""@en ;
+A Software Repository is also a type of dataset therefore GA's Software Repositories are listed in one of GA's registers, just as all datasets are."""@en ;
                     rdfs:label "Software Repository"@en .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#Survey
+:Survey rdf:type owl:Class ;
+        rdfs:subClassOf <http://www.w3.org/ns/prov#Activity> ;
+        rdfs:comment """A Survey is an activity undertaken by GA or someone on GA's behalf to aquire data. Common Surveys conducted by/for GA include airborne geophysical surveys, ship-borne bathymetry surveys and on ground passive seismic surveys.
+
+Information about Surveys in GA is delivered online via GA's Surveys Register: http://pid.geoscience.gov.au/survey/ from our internal database systems. Individual Surveys URIs, e.g. http://pid.geoscience.gov.au/survey/801, are quoted in dataset's metadata in order to indicate which survey generated a paticular dataset.
+
+In recognition of Surveys being one-time temporal events, they are modelled mainly as a type of prov:Activity. This enables the relationship of prov:wasGeneratedBy to be used to associate the dataset(s) produced by an activity with it. It also allows the Survey to be associated with a range of prov:Agents who may have played a role in conducting the Survey via the typical Agent/Acitivty relationships available in PROV."""@en ;
+        rdfs:label "Survey"@en .
 
 
 ###  http://pid.geoscience.org.au/def/ont/gapd#WebService
 :WebService rdf:type owl:Class ;
-            rdfs:subClassOf dcat:Distribution ;
-            rdfs:comment "GA's Web Services are a specialised type of a dataset distribution: they are a services that allow for dataset subsetting (querying) and supersetting (merging data from multiple datasets). GA has an extensive catalogue of Open Geospatial Consortium web services but also has a few non-OGC web services, such as bespoke RESTful APIs, database XML APIs and SPARQL endpoints."@en ;
+            rdfs:subClassOf dcat:Distribution ,
+                            <http://www.w3.org/ns/prov#Agent> ;
+            rdfs:comment """GA's Web Services are a specialised type of a dataset distribution: they are a services that allow for dataset subsetting (querying) and supersetting (merging data from multiple datasets). 
+
+GA has an extensive catalogue of Open Geospatial Consortium web services but also has a few non-OGC web services, such as bespoke RESTful APIs, database XML APIs and SPARQL endpoints.
+
+GA's main register of Web Services is delivered via its main enterprise catalogue eCat at http://ecat.ga.gov.au."""@en ;
             rdfs:label "Web Service"@en .
 
 
 ###  http://purl.org/vocommons/voaf#Vocabulary
 <http://purl.org/vocommons/voaf#Vocabulary> rdfs:subClassOf :Dataset ,
                                                             <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
-                                            rdfs:comment "A Vocabulary, as published by GA, is both a SKOS ConceptScheme and also a DCAT Dataset. This means its content is in accordance with SKOS but its metadata is in accordance with DCAT."@en ;
+                                            rdfs:comment """GA uses vocabularties to deliver the relationships between terms within particular domains. 
+
+GA publishes domains via our vocabulary register: http://pid.geoscience.gov.au/def/voc/
+
+A Vocabulary, as published by GA, is both a SKOS ConceptScheme and also a DCAT Dataset. This means its content is in accordance with SKOS but its metadata is in accordance with DCAT."""@en ;
                                             rdfs:label "Vocabulary"@en .
 
 
@@ -202,8 +244,12 @@ A Software Repository is also a type of dataset therefor GA's Software Repositor
 #    Annotations
 #################################################################
 
-:Dataset rdfs:label "Dataset"@en ;
-         rdfs:comment "GA's Datasets are both DCAT Datasets and also PROV Entities. This means they have metadata according to DCAT and relations to other Datasets, Agents and Activities according to PROV."@en .
+:Dataset rdfs:comment """GA delivers a large Register of datasets online at http://ecat.ga.gov.au
+
+GA's Datasets are both DCAT Datasets and also PROV Entities. This means they have metadata according to DCAT and relations to other Datasets, Agents and Activities according to PROV.
+
+GA's main Register also includes Collection records for Dataset items in other Registers such as software repositories in online version conrol systems."""@en ;
+         rdfs:label "Dataset"@en .
 
 
 ###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
