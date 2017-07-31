@@ -3,20 +3,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>GA's Public Data Ontology</title>
-        <title>GA's Public Data ontology</title>
+        <title>Geoscience Australia's Public Data ontology</title>
         <title>GA's Public Data Ontology</title>
         <link href="http://pid.geoscience.gov.au/def/ont/static/LODE/owl.css" rel="stylesheet" type="text/css" />
         <link href="http://pid.geoscience.gov.au/def/ont/static/LODE/Primer.css" rel="stylesheet" type="text/css" />
         <link href="http://pid.geoscience.gov.au/def/ont/static/LODE/rec.css" rel="stylesheet" type="text/css" />
         <link href="http://pid.geoscience.gov.au/def/ont/static/LODE/extra.css" rel="stylesheet" type="text/css" />
-        <script src="http://pid.geoscience.gov.au/def/ont/static/LODE/jquery.js"></script>
-	<script src="http://pid.geoscience.gov.au/def/ont/static/LODE/jquery.scrollTo.js"></script>
-	<script src="http://pid.geoscience.gov.au/def/ont/static/LODE/marked.min.js"></script><script>
+        <link rel="shortcut icon" href="http://www.ga.gov.au/favicon.ico" />
+        <script src="http://pid.geoscience.gov.au/def/ont/static/LODE/jquery.js"></script><script src="http://pid.geoscience.gov.au/def/ont/static/LODE/jquery.scrollTo.js"></script><script src="http://pid.geoscience.gov.au/def/ont/static/LODE/marked.min.js"></script><script>
             $(document).ready(
                 function () {
                 	jQuery(".markdown").each(function(el){
             jQuery(this).after(marked(jQuery(this).text())).remove()});
-                    var list = $('a[name="http://www.essepuntato.it/tmp/1496651839-ontology"]');
+                    var list = $('a[name="http://www.essepuntato.it/tmp/1501479682-ontology"]');
                     if (list.size() != 0) {
                     	var element = list.first();
                     	$.scrollTo(element);
@@ -31,11 +30,11 @@
                 <dt>IRI:</dt>
                 <dd>http://pid.geoscience.org.au/def/ont/gapd#</dd>
                 <dt>Version IRI:</dt>
-                <dd>http://pid.geoscience.org.au/def/ont/gapd/1.0</dd>
+                <dd>http://pid.geoscience.org.au/def/ont/gapd/1.1</dd>
             </dl>
             <dl>
                 <dt>Current version:</dt>
-                <dd>1.0</dd>
+                <dd>1.1</dd>
             </dl>
             <dl>
                 <dt>Authors:</dt>
@@ -44,9 +43,10 @@
             </dl>
             <dl>
                 <dt>Imported Ontologies:</dt>
-                <dd><a href="http://www.w3.org/ns/dcat">http://www.w3.org/ns/dcat</a> (<a href="http://www.essepuntato.it/lode/owlapi/http://www.w3.org/ns/dcat">visualise it with LODE</a>)</dd>
-                <dd><a href="http://www.w3.org/ns/prov">http://www.w3.org/ns/prov</a> (<a href="http://www.essepuntato.it/lode/owlapi/http://www.w3.org/ns/prov">visualise it with LODE</a>)</dd>
-                <dd><a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a> (<a href="http://www.essepuntato.it/lode/owlapi/http://www.w3.org/ns/sosa/">visualise it with LODE</a>)</dd>
+                <dd><a href="http://purl.org/linked-data/registry">http://purl.org/linked-data/registry</a></dd>
+                <dd><a href="http://www.w3.org/ns/dcat">http://www.w3.org/ns/dcat</a></dd>
+                <dd><a href="http://www.w3.org/ns/prov">http://www.w3.org/ns/prov</a></dd>
+                <dd><a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a></dd>
             </dl>
             <dl>
                 <dt>Other visualisation:</dt>
@@ -56,7 +56,10 @@
         </div>
         <hr />
         <h2>Abstract</h2>
-        <span class="markdown">This ontology represents many of the classes of information object that Geoscience Australia (GA) delivers publicly and the relationships between them.</span>
+        <span class="markdown">This ontology represents many of the classes of information object that Geoscience Australia (GA) delivers publicly and the relationships between them. 
+        Instances of the classes of objects are delivered online via GA's catalogues such as eCat (http://ecat.ga.gov.au/geonetwork/) and the Samples Catalogue (http://pid.geoscience.gov.au/sample/) and those systems adhere to this ontology by delivering the metadata and relationships indicated here for class objects either at instances' landing pages or via Linked Data views of those objects.
+        This means for each instance of a class listed here deliverd via one of GA's catalogue systems, you should be able to find the required metadata for it. This ontology then acts as a guarentee about what you can expect to know about GA's publicly delivered information objects.
+        Further documentation and examples using the GAPD are given in the code repository housing this ontology at http://github.com/geoscienceaustralia/gapd-ont.</span>
         <div id="toc">
             <h2>Table of Content</h2>
             <ol>
@@ -71,32 +74,39 @@
             <h2>Classes</h2>
             <ul class="hlist">
                 <li><a href="#d4e100" title="http://pid.geoscience.org.au/def/ont/gapd#Dataset">Dataset</a></li>
-                <li><a href="#d4e120" title="http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository">Software Repository</a></li>
-                <li><a href="#d4e133" title="http://pid.geoscience.org.au/def/ont/gapd#WebService">Web Service</a></li>
+                <li><a href="#d4e115" title="http://pid.geoscience.org.au/def/ont/gapd#Ontology">Ontology</a></li>
+                <li><a href="#d4e133" title="http://pid.geoscience.org.au/def/ont/gapd#Sample">Sample</a></li>
+                <li><a href="#d4e146" title="http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository">Software Repository</a></li>
+                <li><a href="#d4e160" title="http://pid.geoscience.org.au/def/ont/gapd#Survey">Survey</a></li>
+                <li><a href="#d4e173" title="http://pid.geoscience.org.au/def/ont/gapd#WebService">Web Service</a></li>
             </ul>
             <div id="d4e100" class="entity">
                 <a name="http://pid.geoscience.org.au/def/ont/gapd#Dataset"></a>
                 <h3>Dataset<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
                 <p><strong>IRI:</strong> http://pid.geoscience.org.au/def/ont/gapd#Dataset</p>
-                <div class="comment"><span class="markdown">GA's Datasets are both DCAT Datasets and also PROV Entities. This means they have metadata according to DCAT and relations to other Datasets, Agents and Activities according to PROV.</span></div>
+                <div class="comment"><span class="markdown">GA delivers a large Register of datasets online at http://ecat.ga.gov.au
+                    GA's Datasets are both DCAT Datasets and also PROV Entities. This means they have metadata according to DCAT and relations to other Datasets, Agents and Activities according to PROV.
+                    GA's main Register also includes Collection records for Dataset items in other Registers such as software repositories in online version conrol systems.</span>
+                </div>
                 <dl class="description">
                     <dt>has super-classes</dt>
                     <dd><span class="dotted" title="http://www.w3.org/ns/dcat#Dataset">dataset</span></dd>
                     <dd><span class="dotted" title="http://www.w3.org/ns/prov#Entity">entity</span><sup title="class" class="type-c">c</sup></dd>
                     <dt>has sub-classes</dt>
-                    <dd><a href="#d4e120" title="http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository">Software Repository</a><sup title="class" class="type-c">c</sup></dd>
+                    <dd><a href="#d4e115" title="http://pid.geoscience.org.au/def/ont/gapd#Ontology">Ontology</a><sup title="class" class="type-c">c</sup>, <a href="#d4e146" title="http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository">Software Repository</a><sup title="class" class="type-c">c</sup></dd>
                     <dt>is in range of</dt>
                     <dd><a href="#d4e75" title="http://pid.geoscience.org.au/def/ont/gapd#operatesOn">operates on</a><sup title="object property" class="type-op">op</sup></dd>
                     <dt>is also defined as</dt>
                     <dd>named individual</dd>
                 </dl>
             </div>
-            <div id="d4e120" class="entity">
-                <a name="http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository"></a>
-                <h3>Software Repository<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
-                <p><strong>IRI:</strong> http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository</p>
-                <div class="comment"><span class="markdown">A Software Repository is a system such as GitHub or BitBucket that stores and manages software code. 
-                    A Software Repository is also a type of dataset therefor GA's Software Repositories are catalogued in one of GA's catalogues, just as all datasets are.</span>
+            <div id="d4e115" class="entity">
+                <a name="http://pid.geoscience.org.au/def/ont/gapd#Ontology"></a>
+                <h3>Ontology<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+                <p><strong>IRI:</strong> http://pid.geoscience.org.au/def/ont/gapd#Ontology</p>
+                <div class="comment"><span class="markdown">An ontology is "a formal naming and definition of the types, properties, and interrelationships of the entities that really or fundamentally exist for a particular domain of discourse" (Wikipedia: https://en.wikipedia.org/wiki/Ontology_(information_science)). 
+                    Ontologies listed in this GAPD are Web Ontology Language (OWL) ontologies delivered by GA for various purposes, for example the LINK ontology which presentes the data model used by the LINK Content Management System (http://link.fsdf.org.au) as a formal OWL ontology at http://pid.geoscience.gov.au/def/ont/link.
+                    All GA's ontologies are listed within GA's ontology register at http://pid.geoscience.gov.au/def/ont/.</span>
                 </div>
                 <dl class="description">
                     <dt>has super-classes</dt>
@@ -104,13 +114,55 @@
                 </dl>
             </div>
             <div id="d4e133" class="entity">
+                <a name="http://pid.geoscience.org.au/def/ont/gapd#Sample"></a>
+                <h3>Sample<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+                <p><strong>IRI:</strong> http://pid.geoscience.org.au/def/ont/gapd#Sample</p>
+                <div class="comment"><span class="markdown">GA is the custodian of several millions of rock, gem fossile oil and other types of geoscience-relevant samples. 
+                    Metadata for GA's samples are delivered via the Samples Register: http://pid.geoscience.gov.au/sample/.
+                    GA defines its Samples as subclasses of the SOSA ontology's Sample class as well as PROV's Entity.</span>
+                </div>
+                <dl class="description">
+                    <dt>has super-classes</dt>
+                    <dd><span class="dotted" title="http://www.w3.org/ns/prov#Entity">entity</span><sup title="class" class="type-c">c</sup></dd>
+                </dl>
+            </div>
+            <div id="d4e146" class="entity">
+                <a name="http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository"></a>
+                <h3>Software Repository<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+                <p><strong>IRI:</strong> http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository</p>
+                <div class="comment"><span class="markdown">A Software Repository is an instance of a version contol system such as Git, usually managed by a dedicated online service such as GitHub or BitBucket that stores and manages software code. 
+                    A Software Repository is also a type of dataset therefore GA's Software Repositories are listed in one of GA's registers, just as all datasets are.</span>
+                </div>
+                <dl class="description">
+                    <dt>has super-classes</dt>
+                    <dd><a href="#d4e100" title="http://pid.geoscience.org.au/def/ont/gapd#Dataset">Dataset</a><sup title="class" class="type-c">c</sup></dd>
+                </dl>
+            </div>
+            <div id="d4e160" class="entity">
+                <a name="http://pid.geoscience.org.au/def/ont/gapd#Survey"></a>
+                <h3>Survey<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+                <p><strong>IRI:</strong> http://pid.geoscience.org.au/def/ont/gapd#Survey</p>
+                <div class="comment"><span class="markdown">A Survey is an activity undertaken by GA or someone on GA's behalf to aquire data. Common Surveys conducted by/for GA include airborne geophysical surveys, ship-borne bathymetry surveys and on ground passive seismic surveys.
+                    Information about Surveys in GA is delivered online via GA's Surveys Register: http://pid.geoscience.gov.au/survey/ from our internal database systems. Individual Surveys URIs, e.g. http://pid.geoscience.gov.au/survey/801, are quoted in dataset's metadata in order to indicate which survey generated a paticular dataset.
+                    In recognition of Surveys being one-time temporal events, they are modelled mainly as a type of prov:Activity. This enables the relationship of prov:wasGeneratedBy to be used to associate the dataset(s) produced by an activity with it. It also allows the Survey to be associated with a range of prov:Agents who may have played a role in conducting the Survey via the typical Agent/Acitivty relationships available in PROV.</span>
+                </div>
+                <dl class="description">
+                    <dt>has super-classes</dt>
+                    <dd><span class="dotted" title="http://www.w3.org/ns/prov#Activity">activity</span></dd>
+                </dl>
+            </div>
+            <div id="d4e173" class="entity">
                 <a name="http://pid.geoscience.org.au/def/ont/gapd#WebService"></a>
                 <h3>Web Service<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
                 <p><strong>IRI:</strong> http://pid.geoscience.org.au/def/ont/gapd#WebService</p>
-                <div class="comment"><span class="markdown">GA's Web Services are a specialised type of a dataset distribution: they are a services that allow for dataset subsetting (querying) and supersetting (merging data from multiple datasets). GA has an extensive catalogue of Open Geospatial Consortium web services but also has a few non-OGC web services, such as bespoke RESTful APIs, database XML APIs and SPARQL endpoints.</span></div>
+                <div class="comment"><span class="markdown">GA's Web Services are a specialised type of a dataset distribution: they are a services that allow for dataset subsetting (querying) and supersetting (merging data from multiple datasets). 
+                    GA has an extensive catalogue of Open Geospatial Consortium web services but also has a few non-OGC web services, such as bespoke RESTful APIs, database XML APIs and SPARQL endpoints.
+                    GA's main register of Web Services is delivered via its main enterprise catalogue eCat at http://ecat.ga.gov.au.</span>
+                </div>
                 <dl class="description">
                     <dt>has super-classes</dt>
                     <dd><span class="dotted" title="http://www.w3.org/ns/dcat#Distribution">distribution</span></dd>
+                    <dd><span class="dotted" title="http://www.w3.org/ns/prov#Agent">agent</span></dd>
                     <dt>is in domain of</dt>
                     <dd><a href="#d4e75" title="http://pid.geoscience.org.au/def/ont/gapd#operatesOn">operates on</a><sup title="object property" class="type-op">op</sup></dd>
                 </dl>
@@ -149,7 +201,7 @@
                 <div class="description">
                     <dl>
                         <dt>has domain</dt>
-                        <dd><a href="#d4e133" title="http://pid.geoscience.org.au/def/ont/gapd#WebService">Web Service</a><sup title="class" class="type-c">c</sup></dd>
+                        <dd><a href="#d4e173" title="http://pid.geoscience.org.au/def/ont/gapd#WebService">Web Service</a><sup title="class" class="type-c">c</sup></dd>
                         <dt>has range</dt>
                         <dd><a href="#d4e100" title="http://pid.geoscience.org.au/def/ont/gapd#Dataset">Dataset</a><sup title="class" class="type-c">c</sup></dd>
                         <dt>is inverse of</dt>
@@ -161,14 +213,14 @@
         <div id="namedindividuals">
             <h2>Named Individuals</h2>
             <ul class="hlist">
-                <li><a href="#d4e212" title="http://pid.geoscience.org.au/def/ont/gapd#DatasetRegister">Dataset Register</a></li>
-                <li><a href="#d4e177" title="http://pid.geoscience.org.au/dataset/">eCat Dataset Register</a></li>
-                <li><a href="#d4e265" title="http://pid.geoscience.org.au/service/">eCat Services Register</a></li>
-                <li><a href="#d4e192" title="http://pid.geoscience.org.au/def/ont/">Ontology Register</a></li>
-                <li><a href="#d4e249" title="http://pid.geoscience.org.au/samples/">Sample Register</a></li>
-                <li><a href="#d4e234" title="http://pid.geoscience.org.au/def/voc/">Vocabulary Register</a></li>
+                <li><a href="#d4e254" title="http://pid.geoscience.org.au/def/ont/gapd#DatasetRegister">Dataset Register</a></li>
+                <li><a href="#d4e219" title="http://pid.geoscience.org.au/dataset/">eCat Dataset Register</a></li>
+                <li><a href="#d4e307" title="http://pid.geoscience.org.au/service/">eCat Services Register</a></li>
+                <li><a href="#d4e234" title="http://pid.geoscience.org.au/def/ont/">Ontology Register</a></li>
+                <li><a href="#d4e291" title="http://pid.geoscience.org.au/samples/">Sample Register</a></li>
+                <li><a href="#d4e276" title="http://pid.geoscience.org.au/def/voc/">Vocabulary Register</a></li>
             </ul>
-            <div id="d4e212" class="entity">
+            <div id="d4e254" class="entity">
                 <a name="http://pid.geoscience.org.au/def/ont/gapd#DatasetRegister"></a>
                 <h3>Dataset Register<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
                 <p><strong>IRI:</strong> http://pid.geoscience.org.au/def/ont/gapd#DatasetRegister</p>
@@ -178,7 +230,7 @@
                     <dd><span class="dotted" title="http://purl.org/linked-data/registry#FederatedRegister">federated register</span><sup title="class" class="type-c">c</sup></dd>
                 </dl>
             </div>
-            <div id="d4e177" class="entity">
+            <div id="d4e219" class="entity">
                 <a name="http://pid.geoscience.org.au/dataset/"></a>
                 <h3>eCat Dataset Register<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
                 <p><strong>IRI:</strong> http://pid.geoscience.org.au/dataset/</p>
@@ -188,7 +240,7 @@
                     <dd><span class="dotted" title="http://purl.org/linked-data/registry#Register">register</span><sup title="class" class="type-c">c</sup></dd>
                 </dl>
             </div>
-            <div id="d4e265" class="entity">
+            <div id="d4e307" class="entity">
                 <a name="http://pid.geoscience.org.au/service/"></a>
                 <h3>eCat Services Register<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
                 <p><strong>IRI:</strong> http://pid.geoscience.org.au/service/</p>
@@ -198,7 +250,7 @@
                     <dd><span class="dotted" title="http://purl.org/linked-data/registry#Register">register</span><sup title="class" class="type-c">c</sup></dd>
                 </dl>
             </div>
-            <div id="d4e192" class="entity">
+            <div id="d4e234" class="entity">
                 <a name="http://pid.geoscience.org.au/def/ont/"></a>
                 <h3>Ontology Register<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
                 <p><strong>IRI:</strong> http://pid.geoscience.org.au/def/ont/</p>
@@ -208,7 +260,7 @@
                     <dd><span class="dotted" title="http://purl.org/linked-data/registry#Register">register</span><sup title="class" class="type-c">c</sup></dd>
                 </dl>
             </div>
-            <div id="d4e249" class="entity">
+            <div id="d4e291" class="entity">
                 <a name="http://pid.geoscience.org.au/samples/"></a>
                 <h3>Sample Register<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
                 <p><strong>IRI:</strong> http://pid.geoscience.org.au/samples/</p>
@@ -218,7 +270,7 @@
                     <dd><span class="dotted" title="http://purl.org/linked-data/registry#Register">register</span><sup title="class" class="type-c">c</sup></dd>
                 </dl>
             </div>
-            <div id="d4e234" class="entity">
+            <div id="d4e276" class="entity">
                 <a name="http://pid.geoscience.org.au/def/voc/"></a>
                 <h3>Vocabulary Register<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
                 <p><strong>IRI:</strong> http://pid.geoscience.org.au/def/voc/</p>

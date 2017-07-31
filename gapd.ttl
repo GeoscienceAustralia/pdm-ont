@@ -24,8 +24,7 @@ This means for each instance of a class listed here deliverd via one of GA's cat
 
 Further documentation and examples using the GAPD are given in the code repository housing this ontology at http://github.com/geoscienceaustralia/gapd-ont."""@en ;
                                               rdfs:isDefinedBy <http://pid.geoscience.org.au/def/ont/gapd> ;
-                                              owl:versionInfo 1.0 ;
-                                              dcterms:modified "2017-06-04"^^xsd:date ;
+                                              owl:versionInfo "1.1"@en ;
                                               dcterms:creator "Nicholas Car"@en ;
                                               rdfs:comment """This ontology represents many of the classes of information object that Geoscience Australia (GA) delivers publicly and the relationships between them. 
 
@@ -40,6 +39,7 @@ Further documentation and examples using the GAPD are given in the code reposito
                                               dcterms:creator <http://orcid.org/0000-0002-8742-7730> ;
                                               rdfs:seeAlso <https://github.com/nicholascar/gapd-o> ;
                                               vann:preferredNamespacePrefix "gapd"@en ;
+                                              dcterms:modified "2017-08-01"@en ;
                                               dcterms:created "2016-12-08"^^xsd:date ;
                                               dcterms:rights "(c) Geoscience Australia 2017"@en ;
                                               rdfs:label "Geoscience Australia's Public Data ontology"@en .
