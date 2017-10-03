@@ -1,18 +1,20 @@
-# GAPD-O
-An OWL ontology for all of GA's public data and metadata.
+# GA's Public Data Model ontology
+An OWL ontology for GA's public data and metadata at the dataset level.
 
-This ontology contains classes for most of the things that Geoscience Australia (GA) publishes in standardised ways, such as datasets in catalogues, vocabularies and web services. The classes in the ontology are mostly just subclasses of things found in a few well-known ontologies, such as [DCAT](https://www.w3.org/TR/vocab-dcat/) & [PROV](https://www.w3.org/TR/prov-o/) with restrictions requiring certain metadata or relationships for them. This is so that GA and others can use this ontology to assess whether things published by GA are conformant with business requirements.
+![](pdm.png)
 
-## Ontology document
-Turtle format: [gapd.ttl](gapd.ttl)  
-HTML format: [gapd.html](http://htmlpreview.github.io/?https://github.com/nicholascar/gapd-o/blob/master/gapd.html)
+The purpose of this ontology is to articulate what metadata and links to other things, at a minimum, can be expected of Geoscience Australia (GA)'s published items, such as datasets, web services and vocabularies. For example, if a dataset is published by GA, regardless of any domain-specific metadata that dataset might have, this ontology says it needs to have at least one keyword associated with it where the keyword is taken from a formal SKOS vocabulary.
 
-## Examples
-* Agents - *coming*
-* Catalogues - *coming*
-* Keywords - *coming*
-* [Provenance](examples/provenance.md)
-* [Web Services](examples/web-services.md)
+This ontology contains classes for many things that GA publishes in [Linked Data](https://en.wikipedia.org/wiki/Linked_data) ways, such as datasets, key words, samples and web services. It also contains classes for things that facilitate the linking of other things, such as catalogues, which contain things like datasets, vocabularies, which contain keywords and agents (people or organisations) that publish things. The classes here are mostly just subclasses of things found in a few well-known ontologies, such as [DCAT](https://www.w3.org/TR/vocab-dcat/), [PROV](https://www.w3.org/TR/prov-o/) & [ORG](https://www.w3.org/TR/vocab-org/) with restrictions requiring certain metadata or relationships for them. 
+
+At the time of this ontology's first publication (late 2017), most things classified by it and published by Ga do not meet this ontology's requirements. It is on-going work for GA to ensure that all datases, web services and so on are eventually published compliant with this ontology.
+
+## Namespace & formal documentation
+This ontology's namespace, which also links to its officail ontology documentation, is <http://pid.geoscience.gov.au/def/ont/ga/pdm>.
+
+## Ontology documents
+RDF (turtle): [pdm.ttl](pdm.ttl)  
+HTML: [pdm.html](pdm.html)
 
 ## Authors and Contact
 Nicholas Car  
