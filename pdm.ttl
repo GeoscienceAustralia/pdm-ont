@@ -6,6 +6,7 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix samfl: <http://def.seegrid.csiro.au/ontology/om/sam-lite#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @base <http://pid.geoscience.org.au/def/ont/ga/pdm#> .
@@ -13,21 +14,21 @@
 <http://pid.geoscience.org.au/def/ont/ga/pdm#> rdf:type owl:Ontology ;
                                                 owl:versionIRI <http://pid.geoscience.org.au/def/ont/ga/pdm/1.2> ;
                                                 vann:preferredNamespacePrefix "pdm"@en ;
+                                                dcterms:modified "2018-01-11"^^xsd:date ;
                                                 dcterms:description """The purpose of this ontology is to articulate what metadata and links to other things, at a minimum, can be expected of Geoscience Australia (GA)'s published items, such as datasets, web services and vocabularies. For example, if a dataset is published by GA, regardless of any domain-specific metadata that dataset might have, this ontology says it needs to have at least one keyword associated with it where the keyword is taken from a formal SKOS vocabulary.
 
-This ontology contains classes for many things that GA publishes in [Linked Data](https://en.wikipedia.org/wiki/Linked_data) ways, such as datasets, key words, samples and web services. It also contains classes for things that facilitate the linking of other things, such as catalogues, which contain things like datasets, vocabularies, which contain keywords and agents (people or organisations) that publish things. The classes here are mostly just subclasses of things found in a few well-known ontologies, such as [DCAT](https://www.w3.org/TR/vocab-dcat/), [PROV](https://www.w3.org/TR/prov-o/) & [ORG](https://www.w3.org/TR/vocab-org/) with restrictions requiring certain metadata or relationships for them. 
+This ontology contains classes for many things that GA publishes in [Linked Data](https://en.wikipedia.org/wiki/Linked_data) ways, such as datasets, key words, samples and web services. It also contains classes for things that facilitate the linking of other things, such as catalogues, which contain things like datasets, vocabularies, which contain keywords and agents (people or organisations) that publish things. The classes here are mostly just subclasses of things found in a few well-known ontologies, such as [DCAT](https://www.w3.org/TR/vocab-dcat/), [PROV](https://www.w3.org/TR/prov-o/) & [ORG](https://www.w3.org/TR/vocab-org/) with restrictions requiring certain metadata or relationships for them.
 
 At the time of this ontology's first publication (late 2017), most things classified by it and published by GA do not meet this ontology's requirements. It is on-going work for GA to ensure that all datases, web services and so on are eventually published compliant with this ontology."""@en ;
                                                 dcterms:creator "Nicholas Car"@en ;
                                                 dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
                                                 vann:preferredNamespaceUri "http://pid.geoscience.org.au/def/ont/ga/pdm#"@en ;
-                                                owl:versionInfo "1.2"@en ;
                                                 dcterms:title "Geoscience Australia's Public Data Model ontology"@en ;
                                                 dcterms:creator <http://orcid.org/0000-0002-8742-7730> ;
+                                                owl:versionInfo "1.3"@en ;
                                                 dcterms:created "2016-12-08"^^xsd:date ;
-                                                dcterms:rights "(c) Geoscience Australia 2017"@en ;
-                                                dcterms:modified "2017-10-03"@en ;
-                                                rdfs:isDefinedBy <http://pid.geoscience.org.au/def/ont/ga/pdm> .
+                                                rdfs:isDefinedBy <http://pid.geoscience.org.au/def/ont/ga/pdm> ;
+                                                dcterms:rights "(c) Geoscience Australia 2017"@en .
 
 #################################################################
 #    Annotation properties
@@ -52,20 +53,24 @@ At the time of this ontology's first publication (late 2017), most things classi
                                                          rdfs:range <http://pid.geoscience.org.au/def/ont/ga/pdm#Dataset> ;
                                                          rdfs:comment """Web Services operate on Dataset(s).
 
-This is a restricted version of the inverse of DCAT's distribution property and is a code list value in ISO19115-3.”””@en ;
-            rdfs:label \"operates on\"@en .
+This is a restricted version of the inverse of DCAT's distribution property and is a code list value in ISO19115-3."""@en ;
+                                                         rdfs:label "operates on"@en .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#wasDerivedFrom
+:wasDerivedFrom rdf:type owl:ObjectProperty .
 
 
 ###  http://pid.geoscience.org.au/def/ont/gapd#wasGeneratedUsingPlan
 :wasGeneratedUsingPlan rdf:type owl:ObjectProperty ;
-                   rdfs:subPropertyOf :wasDerivedFrom ;
-                   rdfs:domain :Dataset ;
-                   rdfs:range [ rdf:type owl:Class ;
-                                owl:unionOf ( :Plan
-                                              :SoftwareRepository
-                                            )
-                              ] ;
-                   rdfs:comment “””Entities may have been generated from Plans (instructions or code). 
+                       rdfs:subPropertyOf :wasDerivedFrom ;
+                       rdfs:domain :Dataset ;
+                       rdfs:range [ rdf:type owl:Class ;
+                                    owl:unionOf ( :Plan
+                                                  :SoftwareRepository
+                                                )
+                                  ] ;
+                       rdfs:comment """Entities may have been generated from Plans (instructions or code).
 
 Use of this property as per :DatasetX wasGeneratedUsingPlan :PlanY is equivalent to declaring:
 
@@ -79,6 +84,12 @@ Use of this property as per :DatasetX wasGeneratedUsingPlan :PlanY is equivalent
 
 ###  http://www.w3.org/ns/dcat#distribution
 dcat:distribution rdf:type owl:ObjectProperty .
+
+###  http://def.seegrid.csiro.au/ontology/om/sam-lite#relatedSamplingFeature
+samfl:relatedSamplingFeature rdf:type owl:ObjectProperty ;
+  rdfs:domain :Sample ;
+  rdfs:range :Site ;
+  rdfs:comment "GA's relation between Samples and Sites is one of relatedSamplingFeature which is the property from the SAM-lite ontology with a domain and range restriction of this ontology's Sample and Site respectively."@en .
 
 
 #################################################################
@@ -112,7 +123,7 @@ dcat:distribution rdf:type owl:ObjectProperty .
 ###  http://pid.geoscience.org.au/def/ont/ga/pdm#Ontology
 <http://pid.geoscience.org.au/def/ont/ga/pdm#Ontology> rdf:type owl:Class ;
                                                        rdfs:subClassOf <http://pid.geoscience.org.au/def/ont/ga/pdm#Dataset> ;
-                                                       rdfs:comment """An ontology is \"a formal naming and definition of the types, properties, and interrelationships of the entities that really or fundamentally exist for a particular domain of discourse\" (Wikipedia: https://en.wikipedia.org/wiki/Ontology_(information_science)). 
+                                                       rdfs:comment """An ontology is \"a formal naming and definition of the types, properties, and interrelationships of the entities that really or fundamentally exist for a particular domain of discourse\" (Wikipedia: https://en.wikipedia.org/wiki/Ontology_(information_science)).
 
 Ontologies listed in this GAPD are Web Ontology Language (OWL) ontologies delivered by GA for various purposes, for example the LINK ontology which presentes the data model used by the LINK Content Management System (http://link.fsdf.org.au) as a formal OWL ontology at http://pid.geoscience.gov.au/def/ont/link.
 
@@ -126,8 +137,9 @@ All GA's ontologies are listed within GA's ontology register at http://pid.geosc
 
 ###  http://pid.geoscience.org.au/def/ont/ga/pdm#Sample
 <http://pid.geoscience.org.au/def/ont/ga/pdm#Sample> rdf:type owl:Class ;
-                                                     rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> , <http://www.w3.org/ns/sosa/Sample> ;
-                                                     rdfs:comment """GA is the custodian of several millions of rock, gem fossile oil and other types of geoscience-relevant samples. 
+                                                     rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> ,
+                                                                     sosa:Sample ;
+                                                     rdfs:comment """GA is the custodian of several millions of rock, gem fossile oil and other types of geoscience-relevant samples.
 
 Metadata for GA's samples are delivered via the Samples Register: http://pid.geoscience.gov.au/sample/.
 
@@ -135,10 +147,21 @@ GA defines its Samples as subclasses of the SOSA ontology's Sample class as well
                                                      rdfs:label "Sample"@en .
 
 
+###  http://pid.geoscience.org.au/def/ont/ga/pdm#Site
+<http://pid.geoscience.org.au/def/ont/ga/pdm#Site> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <http://www.w3.org/ns/prov#Location> ;
+                                                   rdfs:comment """GA maintains a Sites table in the central Oracle database, A Schema, that contain thei individual Sites that GA publishes via a Linked Data API at http://pid.geoscience.gov.au/site/.
+
+The metadata about these Sites contained in A Schema is not the totality of information known about each Site by GA but the information contained is enough for geographic positioning of the site and to associate other GA publised items with, such as Samples.
+
+Sites can be of many different types such as boreholes, survey areas, transects and so on. The details of GA's Sites will be published through this ontology over time."""@en ;
+                                                   rdfs:label "Site"@en .
+
+
 ###  http://pid.geoscience.org.au/def/ont/ga/pdm#SoftwareRepository
 <http://pid.geoscience.org.au/def/ont/ga/pdm#SoftwareRepository> rdf:type owl:Class ;
                                                                  rdfs:subClassOf <http://pid.geoscience.org.au/def/ont/ga/pdm#Dataset> ;
-                                                                 rdfs:comment """A Software Repository is an instance of a version contol system such as Git, usually managed by a dedicated online service such as GitHub or BitBucket that stores and manages software code. 
+                                                                 rdfs:comment """A Software Repository is an instance of a version contol system such as Git, usually managed by a dedicated online service such as GitHub or BitBucket that stores and manages software code.
 
 A Software Repository is also a type of dataset therefore GA's Software Repositories are listed in one of GA's registers, just as all datasets are."""@en ;
                                                                  rdfs:label "Software Repository"@en .
@@ -160,7 +183,7 @@ In recognition of Surveys being one-time temporal events, they are modelled main
                                                          rdfs:subClassOf <http://pid.geoscience.org.au/def/ont/ga/pdm#Dataset> ,
                                                                          <http://purl.org/vocommons/voaf#Vocabulary> ,
                                                                          <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
-                                                         rdfs:comment """GA uses vocabularties to deliver the relationships between terms within particular domains. 
+                                                         rdfs:comment """GA uses vocabularties to deliver the relationships between terms within particular domains.
 
 GA publishes domains via our vocabulary register: http://pid.geoscience.gov.au/def/voc/
 
@@ -172,12 +195,24 @@ A Vocabulary, as published by GA, is both a SKOS ConceptScheme and also a DCAT D
 <http://pid.geoscience.org.au/def/ont/ga/pdm#WebService> rdf:type owl:Class ;
                                                          rdfs:subClassOf dcat:Distribution ,
                                                                          <http://www.w3.org/ns/prov#Agent> ;
-                                                         rdfs:comment """GA's Web Services are a specialised type of a dataset distribution: they are a services that allow for dataset subsetting (querying) and supersetting (merging data from multiple datasets). 
+                                                         rdfs:comment """GA's Web Services are a specialised type of a dataset distribution: they are a services that allow for dataset subsetting (querying) and supersetting (merging data from multiple datasets).
 
 GA has an extensive catalogue of Open Geospatial Consortium web services but also has a few non-OGC web services, such as bespoke RESTful APIs, database XML APIs and SPARQL endpoints.
 
 GA's main register of Web Services is delivered via its main enterprise catalogue eCat at http://ecat.ga.gov.au."""@en ;
                                                          rdfs:label "Web Service"@en .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#Dataset
+:Dataset rdf:type owl:Class .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#Plan
+:Plan rdf:type owl:Class .
+
+
+###  http://pid.geoscience.org.au/def/ont/gapd#SoftwareRepository
+:SoftwareRepository rdf:type owl:Class .
 
 
 ###  http://purl.org/linked-data/registry#FederatedRegister
@@ -214,6 +249,14 @@ dcat:Distribution rdf:type owl:Class .
 
 ###  http://www.w3.org/ns/prov#Entity
 <http://www.w3.org/ns/prov#Entity> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Location
+<http://www.w3.org/ns/prov#Location> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/sosa/Sample
+sosa:Sample rdf:type owl:Class .
 
 
 #################################################################
