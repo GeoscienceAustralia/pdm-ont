@@ -9,15 +9,27 @@ This ontology contains classes for many things that GA publishes in [Linked Data
 
 At the time of this ontology's first publication (late 2017), most things classified by it and published by Ga do not meet this ontology's requirements. It is on-going work for GA to ensure that all datases, web services and so on are eventually published compliant with this ontology.
 
+
 ## Namespace & formal documentation
 This ontology's namespace, which also links to its officail ontology documentation, is <http://pid.geoscience.gov.au/def/ont/ga/pdm>.
+
 
 ## Ontology documents
 RDF (turtle): [pdm.ttl](pdm.ttl)  
 HTML: [pdm.html](pdm.html)
 
-## Authors and Contact
-Nicholas Car  
+
+## License
+This repository is licensed under Creative Commons 4.0 International. See the [LICENSE deed](LICENSE) in this repository for details.
+
+
+## Contacts
+**Nicholas Car**  
+*Data Architect*  
 Geoscience Australia  
 <nicholas.car@ga.gov.au>  
 <http://orcid.org/0000-0002-8742-7730>
+
+**Margie Smith**  
+*Data Governance & Policy*  
+<margie.smith@ga.gov.au>  
