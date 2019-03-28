@@ -31,5 +31,11 @@ Geoscience Australia
 
 **Margie Smith**  
 *Data Governance & Policy*  
+Geoscience Australia
 <margie.smith@ga.gov.au>  
 <http://orcid.org/0000-0003-2696-189X>
+
+**Nicholas Car**
+*creator*
+CSIRO
+<nicholas.car@csiro.au>
