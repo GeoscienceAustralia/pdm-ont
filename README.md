@@ -24,12 +24,12 @@ This repository is licensed under Creative Commons 4.0 International. See the [L
 
 
 ## Contacts
-**Nicholas Car**  
+**William Francis**  
 *Data Architect*  
 Geoscience Australia  
-<nicholas.car@ga.gov.au>  
-<http://orcid.org/0000-0002-8742-7730>
+<william.francis@ga.gov.au>  
 
 **Margie Smith**  
 *Data Governance & Policy*  
 <margie.smith@ga.gov.au>  
+<http://orcid.org/0000-0003-2696-189X>
