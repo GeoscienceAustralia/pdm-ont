@@ -1,5 +1,5 @@
 # GA's Public Data Model ontology
-An OWL ontology for GA's public data and metadata at the dataset level.
+An OWL ontology for GA's public data and metadata at the dataset level. It is not currently maintained.
 
 ![](pdm.png)
 
@@ -24,18 +24,9 @@ This repository is licensed under Creative Commons 4.0 International. See the [L
 
 
 ## Contacts
-**William Francis**  
-*Data Architect*  
-Geoscience Australia  
-<william.francis@ga.gov.au>  
 
 **Margie Smith**  
 *Data Governance & Policy*  
 Geoscience Australia
 <margie.smith@ga.gov.au>  
 <http://orcid.org/0000-0003-2696-189X>
-
-**Nicholas Car**
-*creator*
-CSIRO
-<nicholas.car@csiro.au>
